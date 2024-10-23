@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 6001;
 
 // CORS configuration
 app.use(cors({
-  origin: 'https://recipe-app-deployed-frontend.vercel.app', // Allowed origin
+  // origin: 'https://recipe-app-deployed-frontend.vercel.app', // Allowed origin
   credentials: true, // Allow credentials like cookies
 }));
 
