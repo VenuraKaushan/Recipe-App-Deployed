@@ -16,6 +16,9 @@ app.use(cors({
   credentials: true,
 }));
 
+// Enable pre-flight requests for all routes
+app.options('*', cors()); // This will handle pre-flight requests
+
 // Middleware for parsing JSON and URL-encoded data
 app.use(express.json());
 app.use(cookieParser());
