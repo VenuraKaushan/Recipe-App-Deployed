@@ -7,42 +7,39 @@ import AuthRoutes from "./routes/auth.routes.js";
 import ReceipeRoute from "./routes/recipes.routes.js";
 
 const app = express();
-
 const PORT = process.env.PORT || 6001;
 
-// CORS [allow the pass the cookies to orin localhost]
+// CORS [allow the pass the cookies to origin localhost]
 app.use(cors({
   origin: 'https://recipe-app-deployed-frontend.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
 
-// accept JSONS
+// Middleware for parsing JSON and URL-encoded data
 app.use(express.json());
 app.use(cookieParser());
-// config the urlEncoded middleware
-app.use(express.urlencoded({extended : false}));
+app.use(express.urlencoded({ extended: false }));
 
-// const URL = process.env.ORIGIN_URL;
-
-// app.use(cors({ credentials: true, origin: URL }));
-
+// Logging middleware (for debugging purposes)
 app.use((req, res, next) => {
   console.log(`${req.method} =====> URL: ${req.url}`);
   next();
 });
 
-// root end point
-app.get("/",(req,res)=>{
+// Root endpoint
+app.get("/", (req, res) => {
   res.send("Welcome to Recipe-App!"); 
 });
 
+// Define your routes **after** the middleware
 app.use("/api/auth", AuthRoutes);
 app.use("/receipe", ReceipeRoute);
 
+// Error handling middleware
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
-  const message = err.message || "Intrernal Server Error";
+  const message = err.message || "Internal Server Error";
   res.status(statusCode).json({
     success: false,
     statusCode,
@@ -50,8 +47,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-
-
+// Start the server
 app.listen(PORT, () => {
   console.log(`🚀💀 Server is started on port ${PORT}!`);
   dbConnect();
