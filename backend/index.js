@@ -14,7 +14,7 @@ app.use(cors({
   origin: 'https://recipe-app-deployed-frontend.vercel.app', // Allowed origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
   credentials: true, // Allow credentials like cookies
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // Allowed headers
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With','Access-Control-Allow-Origin'], // Allowed headers
 }));
 
 // Middleware for parsing JSON and URL-encoded data
