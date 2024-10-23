@@ -9,15 +9,13 @@ import ReceipeRoute from "./routes/recipes.routes.js";
 const app = express();
 const PORT = process.env.PORT || 6001;
 
-// CORS [allow the pass the cookies to origin localhost]
+// CORS configuration
 app.use(cors({
-  origin: 'https://recipe-app-deployed-frontend.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
+  origin: 'https://recipe-app-deployed-frontend.vercel.app', // Allowed origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+  credentials: true, // Allow credentials like cookies
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // Allowed headers
 }));
-
-// Enable pre-flight requests for all routes
-app.options('*', cors()); // This will handle pre-flight requests
 
 // Middleware for parsing JSON and URL-encoded data
 app.use(express.json());
@@ -35,7 +33,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to Recipe-App!"); 
 });
 
-// Define your routes **after** the middleware
+// Define your routes after the middleware
 app.use("/api/auth", AuthRoutes);
 app.use("/receipe", ReceipeRoute);
 
