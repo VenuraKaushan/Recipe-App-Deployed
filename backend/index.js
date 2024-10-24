@@ -11,19 +11,27 @@ const PORT = process.env.PORT || 6001;
 
 // CORS configuration
 app.use(cors({
-  origin: 'https://recipe-app-deployed-frontend.vercel.app', // Correct frontend URL without the wildcard
+  origin: 'https://recipe-app-deployed-frontend.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true, 
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'X-CSRF-Token'] 
+  credentials: true, // Allow credentials (cookies, headers, etc.)
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
+// Manually add headers to handle CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://recipe-app-deployed-frontend.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
 
 // Middleware for parsing JSON and URL-encoded data
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
-// Logging middleware (for debugging purposes)
+// Logging middleware
 app.use((req, res, next) => {
   console.log(`${req.method} =====> URL: ${req.url}`);
   next();
@@ -31,7 +39,7 @@ app.use((req, res, next) => {
 
 // Root endpoint
 app.get("/", (req, res) => {
-  res.send("Welcome to Recipe-App!"); 
+  res.send("Welcome to Recipe-App!");
 });
 
 // Define your routes after the middleware
