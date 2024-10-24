@@ -10,10 +10,15 @@ const app = express();
 const PORT = process.env.PORT || 6001;
 
 // Use CORS middleware
-app.use(cors({
-  origin: 'https://recipe-app-deployed-frontend.vercel.app', // Set allowed origin for CORS
-  credentials: true, // Allow credentials (cookies, etc.)
-}));
+const corsOptions = {
+  origin: 'https://recipe-app-deployed-frontend.vercel.app',
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "https://recipe-app-deployed-frontend.vercel.app");
