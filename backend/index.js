@@ -9,22 +9,11 @@ import ReceipeRoute from "./routes/recipes.routes.js";
 const app = express();
 const PORT = process.env.PORT || 6001;
 
-// CORS configuration
+// Use CORS middleware
 app.use(cors({
-  origin: 'https://recipe-app-deployed-frontend.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true, // Allow credentials (cookies, headers, etc.)
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: 'https://recipe-app-deployed-frontend.vercel.app', // Set allowed origin for CORS
+  credentials: true, // Allow credentials (cookies, etc.)
 }));
-
-// Manually add headers to handle CORS
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://recipe-app-deployed-frontend.vercel.app");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
 
 // Middleware for parsing JSON and URL-encoded data
 app.use(express.json());
@@ -42,7 +31,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to Recipe-App!");
 });
 
-// Define your routes after the middleware
+// Define routes after middleware
 app.use("/api/auth", AuthRoutes);
 app.use("/receipe", ReceipeRoute);
 
