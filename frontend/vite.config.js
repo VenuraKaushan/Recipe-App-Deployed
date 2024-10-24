@@ -8,7 +8,7 @@ export default defineConfig({
   //     "/api": {
   //       target: "https://recipe-app-deployed-backend.vercel.app",
   //       secure: true,
-  //     },
+  //     },sdfd
   //   },
   // },
   plugins: [react()],
