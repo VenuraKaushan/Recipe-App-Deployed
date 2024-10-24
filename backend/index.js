@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 6001;
 app.use(cors({
   origin: 'https://recipe-app-deployed-frontend.vercel.app', // Allowed origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-  credentials: true, // Allow credentials like cookies
+  credentials: true, // Allow credentials like cookiesfdff
 }));
 
 // Middleware for parsing JSON and URL-encoded data
