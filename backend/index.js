@@ -11,9 +11,10 @@ const PORT = process.env.PORT || 6001;
 
 // CORS configuration
 app.use(cors({
-  origin: 'https://recipe-app-deployed-frontend.vercel.app', // Allowed origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-  credentials: true, // Allow credentials like cookiesfdff
+  origin: 'https://recipe-app-deployed-frontend.vercel.app', // Allowed origin (frontend)
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  credentials: true, // Enable credentials (cookies, authorization headers, etc.)
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'X-CSRF-Token'] // Allowed headers
 }));
 
 // Middleware for parsing JSON and URL-encoded data
