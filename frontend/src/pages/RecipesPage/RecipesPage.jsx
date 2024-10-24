@@ -20,7 +20,7 @@ function RecipesPage() {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/receipe/getAllRecipes"
+          "https://recipe-app-deployed-backend.vercel.app/receipe/getAllRecipes"
         );
         console.log(response.data)
         setCategories(response.data.categories);
@@ -42,7 +42,7 @@ function RecipesPage() {
     } = category;
     try {
       await axios.post(
-        "http://localhost:3001/receipe/addfavourite",
+        "https://recipe-app-deployed-backend.vercel.app/receipe/addfavourite",
         {
           idCategory: idCategory,
           strCategory: strCategory,

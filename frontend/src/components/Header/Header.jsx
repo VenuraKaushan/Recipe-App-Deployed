@@ -25,7 +25,7 @@ function Header() {
   const handleLogout = async () => {
     try {
       localStorage.clear();
-      await axios.post("http://localhost:3001/api/auth/logout");
+      await axios.post("https://recipe-app-deployed-backend.vercel.app/api/auth/logout");
       navigate("/");
       window.location.reload();
     } catch (error) {

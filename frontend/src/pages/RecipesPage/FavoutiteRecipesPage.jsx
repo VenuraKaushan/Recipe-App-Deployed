@@ -24,7 +24,7 @@ function FavoutiteRecipesPage() {
     const fetchFavoriteRecipes = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/receipe/favouriterecipe",
+          "https://recipe-app-deployed-backend.vercel.app/receipe/favouriterecipe",
           { withCredentials: true }
         );
         setFavoriteRecipes(response.data); // Assuming response.data is an array of favorite recipes
@@ -40,7 +40,7 @@ function FavoutiteRecipesPage() {
 
   const handleDeleteClick = async (_id) => {
     try {
-      await axios.delete(`http://localhost:3001/receipe/delete/${_id}`);
+      await axios.delete(`https://recipe-app-deployed-backend.vercel.app/receipe/delete/${_id}`);
       setDeletedRecipeId(_id);
       toast.success("Successfully remove from the favorite!");
     } catch (error) {
